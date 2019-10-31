@@ -5,3 +5,5 @@ export const CURRENT_USER = 'CURRENT_USER';
 export const IS_VALID_USER = 'IS_VALID_USER';
 
 export const FAVORITE_MOVIES = 'FAVORITE_MOVIES';
+
+export const PUBLIC_USER = 'PUBLIC_USER';

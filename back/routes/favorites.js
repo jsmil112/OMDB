@@ -41,4 +41,16 @@ router.get('/getFavorites', function(req,res) {
     })
 })
 
+/////Refactor this to just one get request that take id in params and returns rather than req.user
+
+
+//finds user, populates favorites, and then sends it all.
+router.get('/getFavorites/:id', function(req,res) {
+    User.findOne({_id: req.params.id}).populate('favMovies').exec((err, user)=>{
+        console.log('FAVORITE FILMS !@!@!@!@!@!@@')
+        console.log(user)
+        res.status(201).json(user);
+    })
+})
+
 module.exports = router;

@@ -4,7 +4,7 @@ import { Link, Route } from "react-router-dom";
 import store from "../store"
 import { connect } from "react-redux";
 
-const Users = props => {
+export default (props) => {
   let searchVal = "";
   function handleChange(evt) {
     searchVal = evt.target.value;
@@ -14,10 +14,13 @@ const Users = props => {
         action=""
         onSubmit={evt => {
           evt.preventDefault();
+          console.log("USERSEARCH SUBMIT!!!!!!!!!!!!!!!!!!!!!!!!")
+          console.log(searchVal)
           props.history.push(`/users/${searchVal}`);
         }}
       >
         <h2>Search for Users</h2> 
+        {console.log("USER SEARCH COMPONENT")}
         <input
           type="text"
           name="search"

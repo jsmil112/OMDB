@@ -26,7 +26,7 @@ export default props => {
             handleChange(evt);
           }}
         />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Search" />
       </form>
 
       {/* <hr /> */}

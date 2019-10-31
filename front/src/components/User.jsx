@@ -11,12 +11,17 @@ let removeFilmFromFavorites = function(filmId) {
 }
 
 export default props => (
+  
   <div>
+  {console.log("INSIDE USER COMPONENT")}
     {console.log(props.currentUser)}
+    {console.log("INSIDE USER COMPONENT")}
       <h1>{props.currentUser.name}</h1>
+      {console.log("INSIDE USER COMPONENT")}
       <hr/>
       {/* <button onClick={}>Logout</button> */}
       <h3>Favorites:</h3>
+      {console.log("INSIDE USER COMPONENT")}
       {/* {console.log("PROPSFAVMOVIES")} */}
         {/* {console.log(props.favMovies)} */}
       {props.favMovies.map((film)=>{

@@ -4,8 +4,10 @@ import HomeSearchContainer from "../containers/HomeSearchContainer";
 import FilmsContainer from "../containers/FilmsContainer";
 import FilmContainer from "../containers/FilmContainer";
 import LoginRegister from "../components/LoginRegister";
+import UsersContainer from "../containers/UsersContainer";
 import UserContainer from "../containers/UserContainer";
 import UserSearch from "../components/UserSearch"
+import UserPublic from "../components/UserPublic"
 import Footer from "./Footer"
 import { Route, Redirect, Switch, Link } from "react-router-dom";
 import RouteHook from "react-route-hook";
@@ -50,15 +52,11 @@ export default (props) => {
           )}
         />
         <RouteHook exact path="/auth/loginRegister" component={LoginRegister}/>
-        <RouteHook
-          exact
-          path="/user/:id"
-          component={UserContainer}
-          onEnter={onUserEnter}
-        />
+        <RouteHook exact path="/user/:id" component={UserContainer} onEnter={onUserEnter}/>
         <Route exact path="/userSearch" component={UserSearch}/>
-        <Route exact path="/users/:searchName" render={({ match }) => (
-            <UsersContainer searchName={match.params.searchName}/>)}/>
+        <Route exact path="/userPublic/:id" component={UserPublic}/>
+        <Route exact path="/users/:searchName" render={({ match, history }) => (
+            <UsersContainer searchName={match.params.searchName} history={history}/>)}/>
         <Route path="/" component={HomeSearchContainer} />
         <Footer location = {props.location} history = {props.history}/>
       </div>
