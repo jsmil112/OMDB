@@ -8,7 +8,7 @@ import UsersContainer from "../containers/UsersContainer";
 import UserContainer from "../containers/UserContainer";
 import UserSearch from "../components/UserSearch"
 import UserPublic from "../components/UserPublic"
-import Footer from "./Footer"
+import UserBox from "./UserBox"
 import { Route, Redirect, Switch, Link } from "react-router-dom";
 import RouteHook from "react-route-hook";
 import store from "../store";
@@ -23,6 +23,8 @@ import {
 export default (props) => {
 
   useEffect(() => {
+    {props.location.pathname === "/" && $(".homepage").length === 0 ? $(".hp").addClass("homepage") : ""}
+    {props.location.pathname !== "/" && $(".homepage").length > 0 ? $(".hp").removeClass("homepage") : ""}
     store.dispatch(validateUser());
     store.dispatch(setCurrentUser());
   });
@@ -34,9 +36,19 @@ export default (props) => {
   }; 
 
   return (
-    <div id="main" className="container-fluid">
-      <div className="col-xs-10">
-        <Link to="/" style={{textDecoration: 'none', color: 'black'}}><h2>OMDB</h2></Link>
+    <div id="main">
+      <div className="flex hp homepage">
+      <div className="flex hp homepage title">
+          <Link to="/" style={{textDecoration: 'none', color: 'black'}}><span id="title" className="homepage hp">OMDB</span></Link>
+          <Route path="/" component={HomeSearchContainer} />
+        </div>
+      <UserBox location = {props.location} history = {props.history}/>
+      </div>
+       
+       
+        
+        
+        
         <Route
           exact
           path="/search/:search"
@@ -57,9 +69,8 @@ export default (props) => {
         <Route exact path="/userPublic/:id" component={UserPublic}/>
         <Route exact path="/users/:searchName" render={({ match, history }) => (
             <UsersContainer searchName={match.params.searchName} history={history}/>)}/>
-        <Route path="/" component={HomeSearchContainer} />
-        <Footer location = {props.location} history = {props.history}/>
-      </div>
+        
+        
     </div>
   );
 };

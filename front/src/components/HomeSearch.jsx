@@ -8,7 +8,7 @@ export default props => {
     searchVal = evt.target.value;
   }
   return (
-    <div>
+    <div id="homeSearch" className="homepage hp">
       <form
         action=""
         onSubmit={evt => {
@@ -18,7 +18,7 @@ export default props => {
         }}
       >
         
-        {Object.keys(props.currentUser).length > 0 ? <h2>{props.currentUser.name}</h2> : ""}
+        {/* {Object.keys(props.currentUser).length > 0 ? <span>{props.currentUser.name}</span> : ""} */}
         <input
           type="text"
           name="search"
@@ -26,7 +26,7 @@ export default props => {
             handleChange(evt);
           }}
         />
-        <input type="submit" value="Search" />
+        <input type="submit" value="Search Films" />
       </form>
 
       {/* <hr /> */}

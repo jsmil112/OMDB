@@ -47336,62 +47336,6 @@ var addFilmToFavorites = function addFilmToFavorites(film) {
 
 /***/ }),
 
-/***/ "./src/components/Footer.jsx":
-/*!***********************************!*\
-  !*** ./src/components/Footer.jsx ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./src/store/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_actions_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/auth */ "./src/store/actions/auth.js");
-
-
-
-
-
-
-
-var Footer = function Footer(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, console.log("loggedIn", _store__WEBPACK_IMPORTED_MODULE_3__["default"].getState().auth.isLoggedIn), props.location.pathname === "/auth/loginRegister" ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), props.isLoggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    to: "/user/".concat(_store__WEBPACK_IMPORTED_MODULE_3__["default"].getState().auth.currentUser._id)
-  }, " Your Page "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: logoutClick
-  }, "Logout"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: function onClick() {
-      return props.history.push('/userSearch');
-    }
-  }, "Search Users")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    to: "/auth/loginRegister"
-  }, "Login / Register")));
-};
-
-var logoutClick = function logoutClick() {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/auth/logout').then(function () {
-    console.log("HOla");
-    _store__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch(Object(_store_actions_auth__WEBPACK_IMPORTED_MODULE_5__["setLogout"])());
-  });
-};
-
-var mapStateToProps = function mapStateToProps(_ref) {
-  var auth = _ref.auth;
-  return {
-    isLoggedIn: auth.isLoggedIn
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps)(Footer));
-
-/***/ }),
-
 /***/ "./src/components/HomeSearch.jsx":
 /*!***************************************!*\
   !*** ./src/components/HomeSearch.jsx ***!
@@ -47414,14 +47358,17 @@ __webpack_require__.r(__webpack_exports__);
     searchVal = evt.target.value;
   }
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "homeSearch",
+    className: "homepage hp"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     action: "",
     onSubmit: function onSubmit(evt) {
       evt.preventDefault(); //console.log(evt)
 
       props.history.push("/search/".concat(searchVal));
     }
-  }, Object.keys(props.currentUser).length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, props.currentUser.name) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     name: "search",
     onChange: function onChange(evt) {
@@ -47429,7 +47376,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "submit",
-    value: "Search"
+    value: "Search Films"
   })));
 });
 
@@ -47503,7 +47450,7 @@ function (_React$Component) {
       var _this2 = this;
 
       if (evt) evt.preventDefault();
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/auth/login', {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/auth/login", {
         email: this.state.email,
         password: this.state.password
       }).then(function (res) {
@@ -47518,7 +47465,7 @@ function (_React$Component) {
       var _this3 = this;
 
       evt.preventDefault();
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/auth/register', {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/auth/register", {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password
@@ -47533,11 +47480,11 @@ function (_React$Component) {
     value: function changeHandler(evt) {
       evt.preventDefault();
 
-      if (evt.target.name === 'password') {
+      if (evt.target.name === "password") {
         this.setState({
           password: evt.target.value
         });
-      } else if (evt.target.name === 'email') {
+      } else if (evt.target.name === "email") {
         this.setState({
           email: evt.target.value
         });
@@ -47552,28 +47499,34 @@ function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.state.showRegister ? "Register" : "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), this.state.showRegister ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.state.showRegister ? "Register" : "Login"), this.state.showRegister ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "login"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "name",
         value: this.state.name,
         onChange: function onChange(evt) {
           return _this4.changeHandler(evt);
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "email",
         value: this.state.email,
         onChange: function onChange(evt) {
           return _this4.changeHandler(evt);
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "password",
         value: this.state.password,
         onChange: function onChange(evt) {
           return _this4.changeHandler(evt);
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick(evt) {
           return _this4.onRegister(evt);
         }
@@ -47583,21 +47536,25 @@ function (_React$Component) {
             showRegister: false
           });
         }
-      }, "Click to Login")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Click to Login")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "login"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "email",
         value: this.state.email,
         onChange: function onChange(evt) {
           return _this4.changeHandler(evt);
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "password",
         value: this.state.password,
         onChange: function onChange(evt) {
           return _this4.changeHandler(evt);
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick(evt) {
           return _this4.onLogin(evt);
         }
@@ -47638,7 +47595,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _containers_UserContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../containers/UserContainer */ "./src/containers/UserContainer.jsx");
 /* harmony import */ var _components_UserSearch__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/UserSearch */ "./src/components/UserSearch.jsx");
 /* harmony import */ var _components_UserPublic__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/UserPublic */ "./src/components/UserPublic.jsx");
-/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Footer */ "./src/components/Footer.jsx");
+/* harmony import */ var _UserBox__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./UserBox */ "./src/components/UserBox.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var react_route_hook__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-route-hook */ "./node_modules/react-route-hook/dist/index.js");
 /* harmony import */ var react_route_hook__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_route_hook__WEBPACK_IMPORTED_MODULE_12__);
@@ -47663,6 +47620,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    {
+      props.location.pathname === "/" && $(".homepage").length === 0 ? $(".hp").addClass("homepage") : "";
+    }
+    {
+      props.location.pathname !== "/" && $(".homepage").length > 0 ? $(".hp").removeClass("homepage") : "";
+    }
     _store__WEBPACK_IMPORTED_MODULE_13__["default"].dispatch(Object(_store_actions_auth__WEBPACK_IMPORTED_MODULE_15__["validateUser"])());
     _store__WEBPACK_IMPORTED_MODULE_13__["default"].dispatch(Object(_store_actions_auth__WEBPACK_IMPORTED_MODULE_15__["setCurrentUser"])());
   });
@@ -47678,17 +47641,27 @@ __webpack_require__.r(__webpack_exports__);
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "main",
-    className: "container-fluid"
+    id: "main"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-xs-10"
+    className: "flex hp homepage"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex hp homepage title"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Link"], {
     to: "/",
     style: {
       textDecoration: 'none',
       color: 'black'
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "OMDB")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Route"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    id: "title",
+    className: "homepage hp"
+  }, "OMDB")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Route"], {
+    path: "/",
+    component: _containers_HomeSearchContainer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserBox__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    location: props.location,
+    history: props.history
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Route"], {
     exact: true,
     path: "/search/:search",
     render: function render(_ref) {
@@ -47734,13 +47707,7 @@ __webpack_require__.r(__webpack_exports__);
         history: history
       });
     }
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Route"], {
-    path: "/",
-    component: _containers_HomeSearchContainer__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Footer__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    location: props.location,
-    history: props.history
-  })));
+  }));
 });
 
 /***/ }),
@@ -47776,7 +47743,7 @@ var removeFilmFromFavorites = function removeFilmFromFavorites(filmId) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, console.log("INSIDE USER COMPONENT"), console.log(props.currentUser), console.log("INSIDE USER COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, props.currentUser.name), console.log("INSIDE USER COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Favorites:"), console.log("INSIDE USER COMPONENT"), props.favMovies.map(function (film) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, console.log("INSIDE USER COMPONENT"), console.log(props.currentUser), console.log("INSIDE USER COMPONENT"), console.log("INSIDE USER COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your Favorites:"), console.log("INSIDE USER COMPONENT"), props.favMovies.map(function (film) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: film._id
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -47791,6 +47758,69 @@ var removeFilmFromFavorites = function removeFilmFromFavorites(filmId) {
     }, "Remove from favorites"));
   }));
 });
+
+/***/ }),
+
+/***/ "./src/components/UserBox.jsx":
+/*!************************************!*\
+  !*** ./src/components/UserBox.jsx ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./src/store/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/auth */ "./src/store/actions/auth.js");
+
+
+
+
+
+
+
+var UserBox = function UserBox(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "userBox",
+    className: "homepage hp"
+  }, props.location.pathname === "/auth/loginRegister" ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.isLoggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "flexColumn"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    className: "userName",
+    to: "/user/".concat(props.currentUser._id)
+  }, " ", props.currentUser.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: logoutClick
+  }, "Logout"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return props.history.push('/userSearch');
+    }
+  }, "Search Users")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/auth/loginRegister"
+  }, "Login / Register")));
+};
+
+var logoutClick = function logoutClick() {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/auth/logout').then(function () {
+    console.log("HOla");
+    _store__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch(Object(_store_actions_auth__WEBPACK_IMPORTED_MODULE_5__["setLogout"])());
+  });
+};
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var auth = _ref.auth;
+  return {
+    isLoggedIn: auth.isLoggedIn,
+    currentUser: auth.currentUser
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps)(UserBox));
 
 /***/ }),
 

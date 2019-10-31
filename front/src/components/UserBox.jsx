@@ -5,13 +5,12 @@ import store from "../store"
 import { connect } from "react-redux";
 import {setLogout} from "../store/actions/auth"
 
-const Footer = props => (
-    <div>
-    {console.log("loggedIn", store.getState().auth.isLoggedIn)}
-    {props.location.pathname === "/auth/loginRegister" ? "" : (<div><hr/> 
+const UserBox = props => (
+    <div id="userBox" className="homepage hp">
+    {props.location.pathname === "/auth/loginRegister" ? "" : (<div> 
       {props.isLoggedIn ? (
-        <div><Link to={`/user/${store.getState().auth.currentUser._id}`}> Your Page </Link>
-        <br/>
+        <div class="flexColumn">
+          <Link className="userName" to={`/user/${props.currentUser._id}`}> {props.currentUser.name}</Link>
         <button onClick={logoutClick}>Logout</button>
         <button onClick={()=>props.history.push('/userSearch')}>Search Users</button></div>
     ) : (
@@ -30,9 +29,10 @@ const logoutClick = () => {
 }
 
 const mapStateToProps = ({ auth }) => ({
-  isLoggedIn: auth.isLoggedIn
+  isLoggedIn: auth.isLoggedIn,
+  currentUser: auth.currentUser
 })
 
 
 
-export default connect(mapStateToProps)(Footer)
+export default connect(mapStateToProps)(UserBox)

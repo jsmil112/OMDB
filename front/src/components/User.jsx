@@ -16,11 +16,9 @@ export default props => (
   {console.log("INSIDE USER COMPONENT")}
     {console.log(props.currentUser)}
     {console.log("INSIDE USER COMPONENT")}
-      <h1>{props.currentUser.name}</h1>
       {console.log("INSIDE USER COMPONENT")}
-      <hr/>
       {/* <button onClick={}>Logout</button> */}
-      <h3>Favorites:</h3>
+      <h2>Your Favorites:</h2>
       {console.log("INSIDE USER COMPONENT")}
       {/* {console.log("PROPSFAVMOVIES")} */}
         {/* {console.log(props.favMovies)} */}

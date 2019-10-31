@@ -1,0 +1,60 @@
+#userBox{
+    display: flex;
+    margin-left: auto;
+}
+
+.homepage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.userName{
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.title{
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex{
+    display: flex;
+}
+
+.flexColumn{
+    display:flex;
+    flex-Direction: column;
+    align-items: center;
+}
+
+html, body, #app {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login {
+    display: flex;
+}
+
+form {
+    display: flex;
+}
+
+#main {
+    width: 100%;
+}
+
+#title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2rem;
+}
